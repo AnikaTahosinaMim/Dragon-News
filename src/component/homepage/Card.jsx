@@ -1,20 +1,13 @@
-import { getNewsByID } from "@/lib/fetch";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { BsArrowRight } from "react-icons/bs";
 import { CiShare1, CiShare2 } from "react-icons/ci";
 import { FaEye, FaRegStar } from "react-icons/fa";
-import { RiGhost2Fill } from "react-icons/ri";
 
-const Datailsages = async ({ params }) => {
-  const { id } = await params;
-  const news = await getNewsByID(id);
-
+const Card = ({ news }) => {
   return (
-    <div className="conatiner mx-auto max-w-4xl">
-      <h2>Datails pages</h2>
-      <div key={news.id} className="card bg-base-100 p-3 shadow-sm">
+    <div>
+      <div key={news.id} className="card bg-base-100 p-2 shadow-sm">
         <div className="flex justify-between items-center">
           <div className="flex gap-3 items-center">
             <Image
@@ -49,7 +42,8 @@ const Datailsages = async ({ params }) => {
           ></Image>
         </figure>
         <div className="card-body">
-          <p >{news.details}</p>
+          <p className="line-clamp-3">{news.details}</p>
+          <Link href={`/news/${news._id}`} className="text-pink-400">see more</Link>
           <div className="flex justify-between border-t border-t-gray-300 py-4">
             <div className="text-yellow-600 flex gap-1 items-center">
               <span>
@@ -73,17 +67,11 @@ const Datailsages = async ({ params }) => {
               <FaEye />
               <span>{news.total_view}</span>
             </div>
-            
           </div>
-          <div>
-              <Link href={`/category/${news.category_id}`}>
-              <button className="btn btn-accent" >see other news for this category <BsArrowRight></BsArrowRight> </button>
-              </Link>
-            </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Datailsages;
+export default Card;
