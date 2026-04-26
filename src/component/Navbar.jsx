@@ -6,9 +6,20 @@ import avatarImg from "@/app/assets/user.png";
 import Image from "next/image";
 import NavLink from "./NavLink";
 import { authClient } from "@/lib/auth-client";
+import { router } from "better-auth/api";
 
 const Navbar = () => {
-  const { data: session,isPending } = authClient.useSession();
+  // const handleLogout = async () => {
+  //   await authClient.signOut({
+  //     fetchOptions: {
+  //       onSuccess: () => {
+  //         router.push("/login"); // redirect to login page
+  //       },
+  //     },
+  //   });
+  // };
+
+  const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
   console.log(user, "from navbar image");
 
@@ -27,7 +38,9 @@ const Navbar = () => {
         </li>
       </ul>
 
-      { isPending? "Loading" : user ? (
+      {isPending ? (
+        "Loading"
+      ) : user ? (
         <div className="flex items-center gap-2">
           <h2>{user?.name}</h2>
           <Image
@@ -42,9 +55,9 @@ const Navbar = () => {
           </Link>
         </div>
       ) : (
-        <Link href={"/login"}>
-          <button className="btn bg-blue-500 text-white">LogIn</button>
-        </Link>
+        <button  className="btn bg-blue-500 text-white">
+          LogIn
+        </button>
       )}
     </div>
   );
