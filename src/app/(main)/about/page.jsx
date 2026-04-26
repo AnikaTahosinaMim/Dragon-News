@@ -1,4 +1,8 @@
 import React from 'react';
+export const metadata = {
+  title: "About-Dragon-News",
+  description: "the news portal of words",
+};
 
 const About = () => {
     return (

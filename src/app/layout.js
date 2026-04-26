@@ -4,20 +4,21 @@ import "./globals.css";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
- weight: ["400", "500", "600", "700"]
+  weight: ["400", "500", "600", "700"],
 });
 export const Montserr = Montserrat({
   variable: "--font-Montserrat",
   subsets: ["latin"],
- weight: ["400", "500", "600", "700"]
+  weight: ["400", "500", "600", "700"],
 });
+export const metadata = {
+  title: "Dragon-news",
+  description: "the news portal of words",
+};
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={` h-full antialiased`}
-    >
+    <html lang="en" className={` h-full antialiased`}>
       <body className={`${poppins.className} min-h-full flex flex-col`}>
         {children}
       </body>

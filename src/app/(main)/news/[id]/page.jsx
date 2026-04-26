@@ -6,6 +6,15 @@ import { BsArrowRight } from "react-icons/bs";
 import { CiShare1, CiShare2 } from "react-icons/ci";
 import { FaEye, FaRegStar } from "react-icons/fa";
 import { RiGhost2Fill } from "react-icons/ri";
+export const generateMetadata = async ({ params }) => {
+  console.log(params);
+  const { id } = await params;
+  const news = await getNewsByID(id);
+  return {
+    title: news.title,
+    description: news.description,
+  };
+};
 
 const Datailsages = async ({ params }) => {
   const { id } = await params;
@@ -49,7 +58,7 @@ const Datailsages = async ({ params }) => {
           ></Image>
         </figure>
         <div className="card-body">
-          <p >{news.details}</p>
+          <p>{news.details}</p>
           <div className="flex justify-between border-t border-t-gray-300 py-4">
             <div className="text-yellow-600 flex gap-1 items-center">
               <span>
@@ -73,13 +82,15 @@ const Datailsages = async ({ params }) => {
               <FaEye />
               <span>{news.total_view}</span>
             </div>
-            
           </div>
           <div>
-              <Link href={`/category/${news.category_id}`}>
-              <button className="btn btn-accent" >see other news for this category <BsArrowRight></BsArrowRight> </button>
-              </Link>
-            </div>
+            <Link href={`/category/${news.category_id}`}>
+              <button className="btn btn-accent">
+                see other news for this category{" "}
+                <BsArrowRight></BsArrowRight>{" "}
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
